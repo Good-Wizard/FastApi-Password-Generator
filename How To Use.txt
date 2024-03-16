@@ -1,0 +1,109 @@
+========================================================================
+Python:
+
+import requests
+
+url = "http://127.0.0.1:8000/password-generator/"
+
+payload = {
+    "length": 9,
+    "use_special_chars": True,
+    "use_uppercase": True,
+    "use_lowercase": True,
+    "use_digits": True,
+    "start_with_letter": True,
+    "excluded_chars": "abc"
+}
+headers = {
+    "Content-Type": "application/json",
+    "User-Agent": "insomnia/8.6.1"
+}
+
+response = requests.request("POST", url, json=payload, headers=headers)
+
+print(response.text)
+========================================================================
+JavaScript (jQuery):
+
+const settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://127.0.0.1:8000/password-generator/",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/json",
+    "User-Agent": "insomnia/8.6.1"
+  },
+  "processData": false,
+  "data": "{\n\t\"length\": 9,\n\t\"use_special_chars\": true,\n\t\"use_uppercase\": true,\n\t\"use_lowercase\": true,\n\t\"use_digits\": true,\n\t\"start_with_letter\": true,\n\t\"excluded_chars\": \"abc\"\n}"
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+========================================================================
+PHP (cURL):
+
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_PORT => "8000",
+  CURLOPT_URL => "http://127.0.0.1:8000/password-generator/",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => "{\n\t\"length\": 9,\n\t\"use_special_chars\": true,\n\t\"use_uppercase\": true,\n\t\"use_lowercase\": true,\n\t\"use_digits\": true,\n\t\"start_with_letter\": true,\n\t\"excluded_chars\": \"abc\"\n}",
+  CURLOPT_HTTPHEADER => [
+    "Content-Type: application/json",
+    "User-Agent: insomnia/8.6.1"
+  ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+========================================================================
+node.js (fetch):
+
+const fetch = require('node-fetch');
+
+let url = 'http://127.0.0.1:8000/password-generator/';
+
+let options = {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.6.1'},
+  body: '{"length":9,"use_special_chars":true,"use_uppercase":true,"use_lowercase":true,"use_digits":true,"start_with_letter":true,"excluded_chars":"abc"}'
+};
+
+fetch(url, options)
+  .then(res => res.json())
+  .then(json => console.log(json))
+  .catch(err => console.error('error:' + err));
+========================================================================
+C:
+
+CURL *hnd = curl_easy_init();
+
+curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "POST");
+curl_easy_setopt(hnd, CURLOPT_URL, "http://127.0.0.1:8000/password-generator/");
+
+struct curl_slist *headers = NULL;
+headers = curl_slist_append(headers, "Content-Type: application/json");
+headers = curl_slist_append(headers, "User-Agent: insomnia/8.6.1");
+curl_easy_setopt(hnd, CURLOPT_HTTPHEADER, headers);
+
+curl_easy_setopt(hnd, CURLOPT_POSTFIELDS, "{\n\t\"length\": 9,\n\t\"use_special_chars\": true,\n\t\"use_uppercase\": true,\n\t\"use_lowercase\": true,\n\t\"use_digits\": true,\n\t\"start_with_letter\": true,\n\t\"excluded_chars\": \"abc\"\n}");
+
+CURLcode ret = curl_easy_perform(hnd);
